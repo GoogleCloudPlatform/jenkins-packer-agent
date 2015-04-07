@@ -14,6 +14,7 @@ RUN curl -L https://dl.bintray.com/mitchellh/packer/packer_0.7.5_linux_amd64.zip
 RUN wget -qO- https://get.docker.com/ | sh
 RUN systemctl enable docker
 RUN usermod -aG docker jenkins-slave
+COPY wrapdocker /usr/local/bin/wrapdocker
 
 # Run Docker and Swarm processe with supervisord 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
