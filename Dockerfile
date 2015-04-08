@@ -8,16 +8,16 @@ VOLUME /var/log/supervisor
 COPY third_party/packer_linux_amd64/* /usr/local/bin/
 
 # Install Jenkins Swarm agent
-ENV JENKINS_SWARM_VERSION 1.22
-ENV HOME /home/jenkins-slave
-RUN useradd -c "Jenkins Slave user" -d $HOME -m jenkins-slave
-RUN curl --create-dirs -sSLo /usr/share/jenkins/swarm-client-$JENKINS_SWARM_VERSION-jar-with-dependencies.jar http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/$JENKINS_SWARM_VERSION/swarm-client-$JENKINS_SWARM_VERSION-jar-with-dependencies.jar \
-  && chmod 755 /usr/share/jenkins
-COPY third_party/carlossg/jenkins-slave.sh /usr/local/bin/jenkins-slave.sh
+ENV HOME /home/jenkins-agent
+RUN useradd -c "Jenkins agent" -d $HOME -m jenkins-agent
+RUN curl --create-dirs -sSLo \
+    /usr/share/jenkins/swarm-client-jar-with-dependencies.jar \
+    http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/1.22/swarm-client-1.22-jar-with-dependencies.jar \
+    && chmod 755 /usr/share/jenkins
 
 # Install Docker
 RUN wget -qO- https://get.docker.com/ | sh
-RUN usermod -aG docker jenkins-slave
+RUN usermod -aG docker jenkins-agent
 COPY wrapdocker /usr/local/bin/wrapdocker
 
 # Run Docker and Swarm processe with supervisord 
