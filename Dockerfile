@@ -4,8 +4,7 @@ USER root
 
 # Install supervisord
 RUN apt-get update && apt-get install -y supervisor
-RUN mkdir -p /var/log/supervisord
-VOLUME /var/log/supervisord
+VOLUME /var/log/supervisor
 
 # Install Packer
 COPY third_party/packer_linux_amd64/* /usr/local/bin/
