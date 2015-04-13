@@ -18,7 +18,6 @@ RUN curl --create-dirs -sSLo \
 # Install Docker
 RUN wget -qO- https://get.docker.com/ | sh
 RUN usermod -aG docker jenkins-agent
-COPY wrapdocker /usr/local/bin/wrapdocker
 
 # Run Docker and Swarm processe with supervisord 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
