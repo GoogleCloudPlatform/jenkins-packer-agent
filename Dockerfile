@@ -15,10 +15,6 @@ RUN curl --create-dirs -sSLo \
     http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/1.22/swarm-client-1.22-jar-with-dependencies.jar \
     && chmod 755 /usr/share/jenkins
 
-# Install Docker
-RUN wget -qO- https://get.docker.com/ | sh
-RUN usermod -aG docker jenkins-agent
-
 # Install gcloud
 ENV CLOUDSDK_PYTHON_SITEPACKAGES 1
 RUN apt-get install -y -qq --no-install-recommends wget unzip python php5-mysql php5-cli php5-cgi openjdk-7-jre-headless openssh-client python-openssl \
