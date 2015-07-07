@@ -26,6 +26,9 @@ VOLUME /var/log/supervisor
 # Install Packer
 COPY third_party/packer_linux_amd64/* /usr/local/bin/
 
+# Copy licenses
+COPY third_party/packer_linux_amd64/LICENSE /licenses/packer/
+
 # Install Jenkins Swarm agent
 ENV HOME /home/jenkins-agent
 RUN useradd -c "Jenkins agent" -d $HOME -m jenkins-agent
