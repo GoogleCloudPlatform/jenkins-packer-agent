@@ -19,15 +19,16 @@ FROM jpetazzo/dind
 
 MAINTAINER Evan Brown <evanbrown@google.com>
 
+# Update/upgrade apt
+RUN apt-get update -y && apt-get upgrade -y
+
 # Install supervisord and Java
-RUN apt-get update && apt-get install -y supervisor default-jre
+RUN apt-get install -y supervisor default-jre
 VOLUME /var/log/supervisor
 
 # Install Packer
-COPY third_party/packer_linux_amd64/* /usr/local/bin/
-
-# Copy licenses
-COPY third_party/packer_linux_amd64/LICENSE /licenses/packer/
+RUN apt-get install -y unzip
+RUN curl -L https://dl.bintray.com/mitchellh/packer/packer_0.8.1_linux_amd64.zip -o /tmp/packer.zip; unzip /tmp/packer.zip -d /usr/local/bin
 
 # Install Jenkins Swarm agent
 ENV HOME /home/jenkins-agent
@@ -40,7 +41,7 @@ RUN curl --create-dirs -sSLo \
 
 # Install gcloud
 ENV CLOUDSDK_PYTHON_SITEPACKAGES 1
-RUN apt-get update -y && apt-get upgrade -y && apt-get install -y -qq --no-install-recommends wget unzip python php5-mysql php5-cli php5-cgi openjdk-7-jre-headless openssh-client python-openssl \
+RUN apt-get install -y -qq --no-install-recommends wget unzip python php5-mysql php5-cli php5-cgi openjdk-7-jre-headless openssh-client python-openssl \
   && apt-get clean \
   && cd /home/jenkins-agent \
   && wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.zip && unzip google-cloud-sdk.zip && rm google-cloud-sdk.zip \

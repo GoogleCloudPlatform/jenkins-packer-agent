@@ -19,16 +19,13 @@
       "type": "shell",
       "inline": [
         "apt-get update -y",
-        "apt-get install -y supervisor default-jre",
+        "apt-get upgrade -y",
+        "apt-get install -y supervisor default-jre unzip",
         "useradd -c 'Jenkins agent' -d /home/jenkins-agent -m jenkins-agent",
         "usermod -aG docker jenkins-agent",
-        "curl --create-dirs -sSLo /usr/share/jenkins/swarm-client-jar-with-dependencies.jar http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/1.22/swarm-client-1.22-jar-with-dependencies.jar"
+        "curl --create-dirs -sSLo /usr/share/jenkins/swarm-client-jar-with-dependencies.jar http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/1.22/swarm-client-1.22-jar-with-dependencies.jar",
+        "curl -L https://dl.bintray.com/mitchellh/packer/packer_0.8.1_linux_amd64.zip -o /tmp/packer.zip; unzip /tmp/packer.zip -d /usr/local/bin"
       ]
-    },
-    {
-      "type": "file",
-      "source": "third_party/packer_linux_amd64",
-      "destination": "/tmp"
     },
     {
       "type": "file",
@@ -44,7 +41,7 @@
       "type": "shell",
       "environment_vars" : [ "CLOUDSDK_PYTHON_SITEPACKAGES=1" ],
       "inline": [
-        "apt-get install -y -qq --no-install-recommends wget unzip python openssh-client",
+        "apt-get install -y -qq --no-install-recommends wget python openssh-client",
         "apt-get clean",
         "cd /usr/local/bin",
         "wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.zip",
@@ -61,8 +58,7 @@
       "type": "shell",
       "inline": [
         "chmod 755 /usr/share/jenkins",
-        "chmod +x /usr/local/bin/jenkins-docker-supervisor.sh",
-        "mv /tmp/packer_linux_amd64/* /usr/local/bin"
+        "chmod +x /usr/local/bin/jenkins-docker-supervisor.sh"
       ]
     }
   ],
