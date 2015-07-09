@@ -15,7 +15,7 @@
 #
 # VERSION   0.0.1
 
-FROM jpetazzo/dind
+FROM ubuntu:14.04
 
 MAINTAINER Evan Brown <evanbrown@google.com>
 
