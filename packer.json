@@ -21,6 +21,7 @@
         "apt-get update -y",
         "apt-get upgrade -y",
         "apt-get install -y supervisor default-jre unzip curl",
+        "useradd -c 'Jenkins agent' -d /home/jenkins-agent -m jenkins-agent",
         "curl --create-dirs -sSLo /usr/share/jenkins/swarm-client-jar-with-dependencies.jar http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/1.22/swarm-client-1.22-jar-with-dependencies.jar",
         "curl -L https://dl.bintray.com/mitchellh/packer/packer_0.8.1_linux_amd64.zip -o packer.zip; unzip packer.zip -d /usr/local/bin"
       ]
