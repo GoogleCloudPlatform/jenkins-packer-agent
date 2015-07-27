@@ -9,7 +9,7 @@
   "builders": [
     {
       "type": "docker",
-      "image": "ubuntu:14.04",
+      "image": "debian:jessie",
       "run_command": ["-d", "-i", "-t", "-u", "root", "{{.Image}}", "/bin/bash"],
       "commit": "true" 
     }
