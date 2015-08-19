@@ -27,13 +27,12 @@ RUN apt-get install -y supervisor default-jre
 VOLUME /var/log/supervisor
 
 # Install Packer
-RUN apt-get install -y unzip
+RUN apt-get install -y unzip curl
 RUN curl -L https://dl.bintray.com/mitchellh/packer/packer_0.8.1_linux_amd64.zip -o /tmp/packer.zip; unzip /tmp/packer.zip -d /usr/local/bin
 
 # Install Jenkins Swarm agent
 ENV HOME /home/jenkins-agent
 RUN useradd -c "Jenkins agent" -d $HOME -m jenkins-agent
-RUN usermod -aG docker jenkins-agent
 RUN curl --create-dirs -sSLo \
     /usr/share/jenkins/swarm-client-jar-with-dependencies.jar \
     http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/1.22/swarm-client-1.22-jar-with-dependencies.jar \
