@@ -27,7 +27,7 @@ RUN apt-get install -y supervisor default-jre
 VOLUME /var/log/supervisor
 
 # Install Packer
-RUN apt-get install -y unzip curl
+RUN apt-get install -y unzip curl git
 RUN curl -L https://dl.bintray.com/mitchellh/packer/packer_0.8.1_linux_amd64.zip -o /tmp/packer.zip; unzip /tmp/packer.zip -d /usr/local/bin
 
 # Install Jenkins Swarm agent
