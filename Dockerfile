@@ -35,7 +35,7 @@ ENV HOME /home/jenkins-agent
 RUN useradd -c "Jenkins agent" -d $HOME -m jenkins-agent
 RUN curl --create-dirs -sSLo \
     /usr/share/jenkins/swarm-client-jar-with-dependencies.jar \
-    http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/1.22/swarm-client-1.22-jar-with-dependencies.jar \
+    http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/2.0/swarm-client-2.0-jar-with-dependencies.jar \
     && chmod 755 /usr/share/jenkins
 
 # Install gcloud
