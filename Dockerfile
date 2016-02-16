@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 #
-# jenkins-packer-agent 
+# jenkins-packer-agent
 #
 # VERSION   0.0.1
 
@@ -28,7 +28,7 @@ VOLUME /var/log/supervisor
 
 # Install Packer
 RUN apt-get install -y unzip curl git
-RUN curl -L https://dl.bintray.com/mitchellh/packer/packer_0.8.1_linux_amd64.zip -o /tmp/packer.zip; unzip /tmp/packer.zip -d /usr/local/bin
+RUN curl -L https://releases.hashicorp.com/packer/0.8.6/packer_0.8.6_linux_amd64.zip -o /tmp/packer.zip; unzip /tmp/packer.zip -d /usr/local/bin
 
 # Install Jenkins Swarm agent
 ENV HOME /home/jenkins-agent
@@ -48,10 +48,10 @@ RUN apt-get install -y -qq --no-install-recommends wget unzip python php5-mysql 
   && google-cloud-sdk/bin/gcloud --quiet components update pkg-go pkg-python pkg-java preview app \
   && google-cloud-sdk/bin/gcloud --quiet config set component_manager/disable_update_check true \
   && chown -R jenkins-agent /home/jenkins-agent/.config \
-  && chown -R jenkins-agent google-cloud-sdk 
+  && chown -R jenkins-agent google-cloud-sdk
 ENV PATH /home/jenkins-agent/google-cloud-sdk/bin:$PATH
 
-# Run Docker and Swarm processe with supervisord 
+# Run Docker and Swarm processe with supervisord
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY jenkins-docker-supervisor.sh /usr/local/bin/jenkins-docker-supervisor.sh
 ENTRYPOINT ["/usr/local/bin/jenkins-docker-supervisor.sh"]
