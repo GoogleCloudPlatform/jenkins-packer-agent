@@ -28,7 +28,7 @@ VOLUME /var/log/supervisor
 
 # Install Packer
 RUN apt-get install -y unzip curl git
-RUN curl -L https://releases.hashicorp.com/packer/0.8.6/packer_0.8.6_linux_amd64.zip -o /tmp/packer.zip; unzip /tmp/packer.zip -d /usr/local/bin
+RUN curl -L https://releases.hashicorp.com/packer/0.10.1/packer_0.10.1_linux_amd64.zip -o /tmp/packer.zip; unzip /tmp/packer.zip -d /usr/local/bin
 
 # Install Jenkins Swarm agent
 ENV HOME /home/jenkins-agent
