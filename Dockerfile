@@ -45,7 +45,7 @@ RUN apt-get install -y -qq --no-install-recommends wget unzip python php5-mysql 
   && cd /home/jenkins-agent \
   && wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.zip && unzip google-cloud-sdk.zip && rm google-cloud-sdk.zip \
   && google-cloud-sdk/install.sh --usage-reporting=true --path-update=true --bash-completion=true --rc-path=/.bashrc --disable-installation-options \
-  && google-cloud-sdk/bin/gcloud --quiet components update pkg-go pkg-python pkg-java preview app \
+  && google-cloud-sdk/bin/gcloud --quiet components update pkg-go pkg-python pkg-java app \
   && google-cloud-sdk/bin/gcloud --quiet config set component_manager/disable_update_check true \
   && chown -R jenkins-agent /home/jenkins-agent/.config \
   && chown -R jenkins-agent google-cloud-sdk
